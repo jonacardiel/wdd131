@@ -89,6 +89,8 @@ h2 {
     display: grid;
     grid-template-columns: 1fr;
     gap: 1em;
+    justify-items: center; /* Center items horizontally */
+    align-items: center; /* Center items vertically */
 }
 
 figure {
@@ -110,6 +112,8 @@ img {
     .gallery {
         display: grid;
         grid-template-columns: 1fr 1fr;
+        justify-items: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
     }
 
     .nav-links {
@@ -125,6 +129,8 @@ img {
 @media screen and (min-width: 1000px) {
     .gallery {
         grid-template-columns: repeat(3, 1fr);
+        justify-items: center; /* Center items horizontally */
+        align-items: center; /* Center items vertically */
     }
 
     .nav-links {
