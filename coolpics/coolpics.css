@@ -1,0 +1,150 @@
+@import url("https://fonts.googleapis.com/css2?family=Mooli&display=swap");
+
+:root {
+    --primary-color: #52489c;
+    --secondary-color: #59c3c3;
+    --accent-color: #f45b69;
+    --text-dark: #333;
+    --text-light: #ebebeb;
+    --primary-font: Arial, Helvetica, sans-serif;
+    --secondary-font: Mooli, sans-serif;
+}
+
+body {
+    font-family: var(--primary-font);
+    font-size: 1.2em;
+    margin: 0;
+    background-color: #f4f4f4;
+    color: var(--text-dark);
+}
+
+header, footer {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 1em;
+    text-align: center;
+}
+
+h1 {
+    font-family: var(--secondary-font);
+    margin: 0;
+}
+
+a:link,
+a:visited {
+    color: var(--accent-color);
+    text-decoration: none;
+}
+
+a:hover,
+a:active {
+    text-decoration: underline;
+}
+
+nav {
+    display: flex;
+    justify-content: center; /* Center the nav items */
+    align-items: center;
+    padding: 0.5em 1em;
+}
+
+.nav-links {
+    display: none; /* Hide the links by default */
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-links li {
+    margin-bottom: 1em;
+}
+
+.nav-links li a {
+    display: block;
+    padding: 0 3em;
+    color: var(--text-light);
+    font-weight: bold;
+    text-align: center;
+}
+
+.menu-button {
+    background: none;
+    color: var(--text-light);
+    border: none;
+    font-size: 1.5em;
+    cursor: pointer;
+    display: block; /* Show the Menu button by default */
+}
+
+main {
+    padding: 1em;
+}
+
+h2 {
+    font-family: var(--secondary-font);
+    text-align: center;
+    margin-bottom: 1em;
+}
+
+.gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1em;
+}
+
+figure {
+    margin: 0;
+}
+
+img {
+    max-width: 100%;
+    height: 250px;
+    width: 250px;
+    object-fit: cover;
+    border: 10px solid #ffffff;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2); /* Shadow */
+    border-radius: 4px; /
+}
+
+/* Medium screens (min-width: 700px) */
+@media screen and (min-width: 700px) {
+    .gallery {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .nav-links {
+        display: none; /* Keep links hidden on medium screens */
+    }
+
+    .menu-button {
+        display: block; /* Ensure the Menu button is visible */
+    }
+}
+
+/* Large screens (min-width: 1000px) */
+@media screen and (min-width: 1000px) {
+    .gallery {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .nav-links {
+        display: flex; /* Show the links on large screens */
+        justify-content: center; /* Center the items */
+        align-items: center;
+    }
+
+    .nav-links li {
+        margin-left: 1em;
+        margin-bottom: 0;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 0 3em;
+        text-align: center;
+    }
+
+    .menu-button {
+        display: none; /* Hide the Menu button on large screens */
+    }
+}
