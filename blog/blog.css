@@ -1,0 +1,202 @@
+body {
+    font-family: 'Helvetica', Arial, sans-serif;
+    color: #473144; /* Dark color */
+    margin: 0;
+    line-height: 1.6;
+    background-color: #f8f8f8; /* Light background for contrast */
+}
+
+h1, h2 {
+    font-family: 'Lora', Impact, serif;
+    color: #AF1B3F; /* Red color */
+    margin-top: 0;
+}
+
+a {
+    color: #AF1B3F; /* Red color for links */
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+
+.skiptocontent a {
+    position: absolute;
+    top: -40px; /* Hidden off-screen by default */
+    left: 0;
+    background-color: #AF1B3F; /* Red color */
+    color: white;
+    padding: 8px 12px;
+    z-index: 100; /* Ensure it's above other content */
+    border-radius: 0 0 8px 0; /* Rounded bottom-left corner */
+}
+
+.skiptocontent a:focus {
+    top: 0; /* Move it into view when focused */
+}
+
+header {
+    background-color: #EFC69B; /* Gold color for header background */
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+header h1 {
+    font-size: 2.5em;
+    text-align: center;
+    padding-bottom: 20px; /* Padding to match mockup spacing */
+    color: #473144; /* Dark color for title */
+}
+
+nav ul {
+    list-style: none; /* Remove bullet points */
+    margin: 0 auto; /* Center the navigation block */
+    padding: 10px 0; /* Adjust padding for height */
+    display: grid;
+    /* 3 columns, auto-sized to content, aligned to the end (right) */
+    grid-template-columns: repeat(3, auto);
+    justify-content: end; /* Align the grid content to the end of the container */
+    justify-items: end; /* Align individual grid items to the end of their cells */
+    border-top: 1px solid #AF1B3F; /* Red line above nav */
+    border-bottom: 1px solid #AF1B3F; /* Red line below nav */
+    max-width: 960px; /* Limit width to match main content area */
+}
+
+nav ul li a {
+    font-size: 1.2em; /* Larger font size for links */
+    padding: 0 15px; /* Spacing between links */
+    line-height: 40px; /* Increase line-height to increase navbar height */
+    color: #473144; /* Dark color for nav links */
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #AF1B3F; /* Red color on hover */
+    text-decoration: none;
+}
+
+
+.articles-and-filters-grid {
+    display: grid;
+    /* Two columns: 3 parts for articles, 1 part for filters */
+    grid-template-columns: 3fr 1fr;
+    gap: 40px; /* Space between articles and filters */
+    max-width: 960px; /* Max width for the main content area */
+    margin: 40px auto; /* Center the main content and add vertical margin */
+    padding: 0 20px; /* Add some horizontal padding for smaller screens */
+}
+
+
+.book-review {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 30px; /* Space between articles */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+.article-details-grid {
+    display: grid;
+    /* Two columns: fixed width for meta, rest for content */
+    grid-template-columns: 150px 1fr;
+    gap: 20px; /* Space between details and content */
+}
+
+.article-meta {
+    text-align: right; /* Align meta details to the right */
+    padding-right: 15px; /* Add some padding from the content */
+    border-right: 1px solid #EFC69B; /* Gold line separator */
+}
+
+.article-meta time {
+    display: block; /* Ensure date takes its own line */
+    font-size: 1.2em; /* Make date stand out visually */
+    font-weight: bold;
+    color: #AF1B3F; /* Red color for date */
+    margin-bottom: 10px;
+}
+
+.article-meta p {
+    margin: 5px 0;
+    font-size: 0.9em;
+    color: #666;
+}
+
+.article-meta .rating {
+    font-size: 1.1em;
+    color: #EFC69B; /* Gold color for stars */
+}
+
+.article-content h2 {
+    font-size: 1.8em;
+    margin-bottom: 15px;
+}
+
+.article-content img {
+    max-width: 200px; /* Max width for the image */
+    height: auto;
+    display: block; /* Remove extra space below image */
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.article-content p {
+    margin-bottom: 0;
+}
+
+
+.filters-sidebar {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    height: fit-content; /* Adjust height to content */
+}
+
+
+@media (max-width: 768px) {
+    .articles-and-filters-grid {
+        grid-template-columns: 1fr; /* Stack columns on smaller screens */
+        padding: 0 15px;
+    }
+
+    .article-details-grid {
+        grid-template-columns: 1fr; /* Stack details and content on smaller screens */
+        gap: 10px;
+    }
+
+    .article-meta {
+        text-align: left; /* Align meta details to left on small screens */
+        border-right: none;
+        border-bottom: 1px solid #EFC69B; /* Add bottom border instead */
+        padding-right: 0;
+        padding-bottom: 10px;
+    }
+
+    .article-content img {
+        max-width: 150px; /* Smaller image on mobile */
+    }
+
+    nav ul {
+        grid-template-columns: 1fr; /* Stack nav links on mobile */
+        justify-content: center;
+        justify-items: center;
+    }
+
+    nav ul li a {
+        padding: 10px 0; /* More vertical padding */
+    }
+}
+
+@media (max-width: 480px) {
+    header h1 {
+        font-size: 2em;
+    }
+
+    .article-content h2 {
+        font-size: 1.5em;
+    }
+}
