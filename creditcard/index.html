@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Credit Card Form</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="stylesheet" href="card.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700,300">
+    <script src="card.js"></script>
+</head>
+<body>
+
+    <div id="card-success" class="hidden">
+        <i class="fa fa-check"></i>
+        <p>Payment Successful!</p>
+    </div>
+    <div id="form-errors" class="hidden">
+        <i class="fa fa-exclamation-triangle"></i>
+        <p id="card-error"></p>
+    </div>
+
+    <form id="credit-card-form"> <div id="card-front">
+            <div id="shadow"></div>
+            <div id="image-container">
+                <span id="amount">paying: <strong>$199</strong></span> <span id="card-image">
+                    <img src="https://via.placeholder.com/40x25/FFA500/FFFFFF?text=CARD" alt="Card Placeholder">
+                </span>
+            </div>
+            <label for="card-number">
+                Card Number
+            </label>
+            <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9101 1020" maxlength="19" required> <div id="cardholder-container">
+                <label for="card-holder">Card Holder</label>
+                <input type="text" id="card-holder" name="cardHolder" placeholder="e.g. John Doe" required /> </div>
+            <div id="exp-container">
+                <label for="card-exp">
+                    Expiration
+                </label>
+                <input id="card-month" type="text" name="cardMonth" placeholder="MM" maxlength="2" required> <input id="card-year" type="text" name="cardYear" placeholder="YY" maxlength="2" required> </div>
+            </div>
+        <div id="card-back">
+            <div id="card-stripe"></div>
+            <div id="cvc-container">
+                <label for="card-cvc"> CVC/CVV</label>
+                <input id="card-cvc" name="cardCVC" placeholder="XXX" type="text" minlength="3" maxlength="4" required> <p>Last 3 or 4 digits</p>
+            </div>
+            </div>
+        <input type="hidden" id="card-token" name="cardToken"/>
+
+        <button type="submit">Submit</button>
+
+    </form>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+    <script src="card.js"></script>
+
+</body>
+</html>
