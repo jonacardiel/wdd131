@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ditto Information</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for the page */
+        body {
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background-color: #f0f4f8; /* Light blue-gray background */
+            color: #334155; /* Darker text color */
+            padding: 1rem;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 1.5rem; /* More rounded corners */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* Soft shadow */
+            text-align: center;
+            max-width: 90%;
+            width: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        h1 {
+            font-size: 2.5rem; /* Larger font for name */
+            font-weight: 700; /* Bold */
+            color: #1e293b; /* Even darker color for name */
+            margin-bottom: 0.5rem;
+        }
+        h2 {
+            font-size: 1.5rem; /* Slightly smaller for ability */
+            font-weight: 500;
+            color: #475569;
+            margin-bottom: 1.5rem;
+        }
+        img {
+            border: 0.25rem solid #e2e8f0; /* Light border around image */
+            border-radius: 1rem; /* Rounded corners for image */
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Smooth transition for hover/click */
+            cursor: pointer;
+            width: 150px; /* Fixed width for the image */
+            height: 150px; /* Fixed height for the image */
+            object-fit: contain; /* Ensure the image fits within the box */
+        }
+        img:hover {
+            transform: scale(1.05); /* Slightly enlarge on hover */
+            box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.2), 0 6px 10px -3px rgba(0, 0, 0, 0.1);
+        }
+        .llm-button {
+            background-color: #3b82f6; /* Blue background */
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem; /* Rounded corners */
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out, transform 0.2s ease-in-out;
+            margin-top: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+        .llm-button:hover {
+            background-color: #2563eb; /* Darker blue on hover */
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+        .pokedex-entry {
+            margin-top: 2rem;
+            padding: 1.5rem;
+            background-color: #f8fafc; /* Lighter background for entry */
+            border-radius: 1rem;
+            text-align: left;
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #475569;
+            box-shadow: inset 0 2px 4px 0 rgba(0, 0, 0, 0.06); /* Subtle inner shadow */
+            width: 100%;
+            max-width: 400px;
+            min-height: 100px; /* Ensure space for content */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            border-left-color: #3b82f6;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Ditto's name will be displayed here -->
+        <h1 id="name"></h1>
+        <!-- One of Ditto's abilities will be displayed here -->
+        <h2 id="ability"></h2>
+        <!-- Ditto's sprite (image) will be displayed here -->
+        <img id="ditto-sprite" src="" alt="Ditto Pokemon">
+
+        <!-- Button to generate Pokedex entry using Gemini API -->
+        <button id="generate-pokedex-entry" class="llm-button">
+            Generate Pokedex Entry ✨
+        </button>
+
+        <!-- Div to display the generated Pokedex entry -->
+        <div id="pokedex-entry-display" class="pokedex-entry">
+            <!-- Pokedex entry will appear here -->
+            Click "Generate Pokedex Entry ✨" to learn more about Ditto!
+        </div>
+    </div>
+
+    <script>
+        // Define the Ditto object with its properties and transform method
+        const ditto = {
+            id: 132,
+            name: "ditto",
+            type: "normal",
+            abilities: ["limber", "imposter"],
+            base_experience: 101,
+            height: 3,
+            weight: 40,
+            stats: {
+                hp: 48,
+                attack: 48,
+                defense: 48,
+                special_attack: 48,
+                special_defense: 48,
+                speed: 48
+            },
+            sprite: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png",
+            transform: function() {
+                // Check current sprite and switch to shiny or original
+                if (this.sprite === "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png") {
+                    this.sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/132.png";
+                } else {
+                    this.sprite = "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/132.png";
+                }
+            }
+        };
+
+        // Function to initialize the display
+        function initializeDittoDisplay() {
+            // Get references to the HTML elements by their IDs
+            const nameElement = document.getElementById('name');
+            const abilityElement = document.getElementById('ability');
+            const spriteElement = document.getElementById('ditto-sprite');
+            const generateButton = document.getElementById('generate-pokedex-entry');
+            const pokedexEntryDisplay = document.getElementById('pokedex-entry-display');
+
+            // Check if elements exist before manipulating them
+            if (nameElement && abilityElement && spriteElement && generateButton && pokedexEntryDisplay) {
+                // Set the text content for the name, capitalizing the first letter
+                nameElement.textContent = ditto.name.charAt(0).toUpperCase() + ditto.name.slice(1);
+
+                // Set the text content for one of the abilities (e.g., the first one)
+                // Capitalize the first letter of the ability as well
+                abilityElement.textContent = `Ability: ${ditto.abilities[0].charAt(0).toUpperCase() + ditto.abilities[0].slice(1)}`;
+
+                // Set the initial source URL for the image
+                spriteElement.src = ditto.sprite;
+                // Set the alt text for accessibility
+                spriteElement.alt = `${ditto.name} Pokemon`;
+
+                // Add an event listener to the sprite image for transformation
+                spriteElement.addEventListener('click', () => {
+                    ditto.transform();
+                    spriteElement.src = ditto.sprite;
+                });
+
+                // Add event listener for the "Generate Pokedex Entry" button
+                generateButton.addEventListener('click', async () => {
+                    pokedexEntryDisplay.innerHTML = '<div class="loading-spinner"></div>'; // Show loading spinner
+                    pokedexEntryDisplay.style.display = 'flex'; // Ensure flex for centering spinner
+
+                    const prompt = `Generate a Pokedex entry for a Pokemon named ${ditto.name}. Include details about its '${ditto.type}' type and abilities: '${ditto.abilities.join(" and ")}'. Make it sound like a typical Pokedex description, concise and informative.`;
+
+                    let chatHistory = [];
+                    chatHistory.push({ role: "user", parts: [{ text: prompt }] });
+                    const payload = { contents: chatHistory };
+                    const apiKey = ""; // If you want to use models other than gemini-2.0-flash or imagen-3.0-generate-002, provide an API key here. Otherwise, leave this as-is.
+                    const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
+
+                    try {
+                        const response = await fetch(apiUrl, {
+                            method: 'POST',
+                            headers: { 'Content-Type': 'application/json' },
+                            body: JSON.stringify(payload)
+                        });
+                        const result = await response.json();
+
+                        if (result.candidates && result.candidates.length > 0 &&
+                            result.candidates[0].content && result.candidates[0].content.parts &&
+                            result.candidates[0].content.parts.length > 0) {
+                            const text = result.candidates[0].content.parts[0].text;
+                            pokedexEntryDisplay.textContent = text; // Display the generated text
+                        } else {
+                            pokedexEntryDisplay.textContent = "Failed to generate Pokedex entry. Please try again.";
+                            console.error("Gemini API response structure unexpected:", result);
+                        }
+                    } catch (error) {
+                        pokedexEntryDisplay.textContent = "Error generating Pokedex entry. Please check your network or try again.";
+                        console.error("Error calling Gemini API:", error);
+                    } finally {
+                        pokedexEntryDisplay.style.display = 'block'; // Reset display to block after content loads
+                    }
+                });
+
+            } else {
+                console.error("One or more HTML elements not found. Please ensure IDs are correct.");
+            }
+        }
+
+        // Call the initialization function when the window content is fully loaded
+        window.onload = initializeDittoDisplay;
+    </script>
+</body>
+</html>
