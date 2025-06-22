@@ -1,0 +1,350 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Arial&family=Helvetica&family=sans-serif&display=swap');
+
+
+/* CSS Custom Properties (Variables) */
+:root {
+    --primary-color: #1B98E0; /* Blue */
+    --secondary-color: #59c3c3; /* Teal */
+    --text-dark: #333;
+    --text-light: #ebebeb;
+    --primary-font: Arial, Helvetica, sans-serif;
+    --secondary-font: 'Patrick Hand', cursive; /* A more accessible handwritten-style font */
+    --border-radius: 8px;
+    --shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Global Styles */
+body {
+    font-family: var(--primary-font);
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--text-light);
+    color: var(--text-dark);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 1rem;
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove extra space below images */
+}
+
+a {
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Screen Reader Only Class for Accessibility */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Header Styles */
+.header {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    padding: 1rem 0;
+    box-shadow: var(--shadow);
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.header .logo {
+    max-width: 80px; /* Adjust logo size as needed */
+    height: auto;
+}
+
+.header h1 {
+    font-family: var(--secondary-font);
+    font-size: 2.5em; /* Larger for headlines */
+    margin: 0;
+    color: var(--text-light);
+}
+
+/* Main Content Styles */
+.main-content {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+/* Search Section Styles */
+.search-section {
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.search-form {
+    display: flex;
+    max-width: 500px;
+    margin: 0 auto;
+    border: 2px solid var(--primary-color);
+    border-radius: var(--border-radius);
+    overflow: hidden; /* Ensures border-radius applies to children */
+}
+
+.search-form input[type="text"] {
+    flex-grow: 1;
+    padding: 0.8rem 1rem;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    font-family: var(--primary-font);
+}
+
+.search-form input[type="text"]::placeholder {
+    color: #999;
+}
+
+.search-button {
+    background-color: var(--primary-color);
+    border: none;
+    padding: 0.8rem 1rem;
+    cursor: pointer;
+    color: var(--text-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover {
+    background-color: #1472a8; /* Darker shade of primary color */
+}
+
+.search-button svg {
+    width: 24px;
+    height: 24px;
+}
+
+/* Recipes Section Styles */
+.recipes-section {
+    display: flex;
+    flex-direction: column; /* Stack vertically on small screens */
+    gap: 2rem; /* Space between recipe cards */
+}
+
+.recipe-card {
+    background-color: #fff;
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column; /* Image on top, text below on small screens */
+}
+
+.recipe-image-container {
+    position: relative;
+    width: 100%;
+    /* Aspect ratio for images, e.g., 16:9 for larger screens, 1:1 for small */
+    padding-bottom: 75%; /* 4:3 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.recipe-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Cover the container, cropping if necessary */
+}
+
+.recipe-tag {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--secondary-color);
+    color: var(--text-light);
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.recipe-info {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.recipe-title {
+    font-family: var(--secondary-font);
+    font-size: 2em;
+    color: var(--primary-color);
+    margin: 0;
+}
+
+/* Star Rating Styles */
+.rating {
+    font-size: 1.2em;
+    color: gold; /* Color for filled stars */
+    letter-spacing: -0.1em; /* Adjust spacing between stars */
+}
+
+.icon-star, .icon-star-empty {
+    display: inline-block; /* Ensure stars are on one line */
+    margin-right: 2px; /* Small gap between stars */
+}
+
+.icon-star-empty {
+    color: #ccc; /* Color for empty stars */
+}
+
+.recipe-description {
+    font-size: 0.95em;
+    color: #555;
+    /* Hidden on small screens */
+    display: none; 
+}
+
+
+/* Footer Styles */
+.footer {
+    background-color: var(--text-dark);
+    color: var(--text-light);
+    padding: 1.5rem 0;
+    text-align: center;
+    font-size: 0.9em;
+    margin-top: 3rem; /* Space above footer */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.social {
+    display: flex;
+    gap: 15px;
+}
+
+.social img {
+    width: 30px; /* Size for social icons */
+    height: 30px;
+    transition: transform 0.2s ease;
+}
+
+.social img:hover {
+    transform: translateY(-3px); /* Subtle hover effect */
+}
+
+.footer .attribution {
+    font-size: 0.8em; /* Slightly larger than the requested 0.6em for better readability, but still small */
+    color: #aaa;
+}
+
+.footer .attribution a {
+    color: #aaa;
+    font-size: inherit; /* Inherit the small font size */
+}
+
+
+/* --- Responsive Styles (Media Queries) --- */
+
+/* Medium screens (e.g., tablets, 600px and up) */
+@media (min-width: 600px) {
+    .header-content {
+        flex-direction: row; /* Logo and title side-by-side */
+        justify-content: center;
+        gap: 2rem;
+    }
+
+    .recipes-section {
+        flex-direction: row; /* Recipes side-by-side */
+        flex-wrap: wrap; /* Allow wrapping onto multiple rows */
+        justify-content: center; /* Center cards if not full width */
+        gap: 1.5rem; /* Adjust gap for wider screens */
+    }
+
+    .recipe-card {
+        flex-direction: row; /* Image and info side-by-side in card */
+        flex: 1 1 calc(50% - 1.5rem); /* Two cards per row, accounting for gap */
+        max-width: calc(50% - 1.5rem); /* Ensure two cards fit */
+    }
+    
+    .recipe-image-container {
+        flex: 0 0 40%; /* Image takes 40% width of card */
+        padding-bottom: 0; /* Reset padding-bottom for aspect ratio */
+        height: 150px; /* Fixed height for image in row layout */
+    }
+
+    .recipe-image {
+        position: static; /* No absolute positioning needed when flex item */
+    }
+
+    .recipe-info {
+        flex: 1; /* Info takes remaining space */
+        padding: 1.5rem;
+    }
+
+    .recipe-description {
+        display: block; /* Show description on larger screens */
+    }
+
+    .footer-content {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+/* Large screens (e.g., desktops, 960px and up) */
+@media (min-width: 960px) {
+    .container {
+        padding: 1rem 2rem; /* More padding on wider screens */
+    }
+
+    .search-form {
+        max-width: 600px; /* Increase search bar width */
+    }
+
+    .recipes-section {
+        gap: 2rem; /* More space between cards on large screens */
+    }
+
+    .recipe-card {
+        flex: 1 1 calc(33.333% - 2rem); /* Three cards per row, accounting for gap */
+        max-width: calc(33.333% - 2rem); /* Ensure three cards fit */
+    }
+
+    .recipe-image-container {
+        height: 200px; /* Slightly taller image on larger cards */
+    }
+
+    /* Constrain main content width to prevent stretching */
+    .main-content {
+        max-width: 960px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Book - Find Your Next Favorite Meal</title>
+    <link rel="stylesheet" href="recipes.css">
+    
+    <!-- Google Fonts - Patrick Hand for headings -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+
+    <!-- Open Graph / Social Media Meta Tags -->
+    <meta property="og:title" content="Recipe Book - Delicious Recipes for Every Occasion">
+    <meta property="og:type" content="website" />
+    <meta property="og:description" content="Discover a wide variety of easy-to-follow recipes for every meal and craving. Find your next favorite dish!">
+    <!-- Updated OG image to a more general food image or a new one you upload -->
+    <meta property="og:image" content="https://placehold.co/1200x630/1B98E0/ebebeb?text=Recipe+Book+Meals">
+    <meta property="og:url" content="https://yourwebsite.com/index.html"> <!-- Replace with actual URL -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Recipe Book - Find Your Next Favorite Meal">
+    <meta name="twitter:description" content="Discover a wide variety of easy-to-follow recipes for every meal and craving. Find your next favorite dish!">
+    <!-- Updated Twitter image to a more general food image or a new one you upload -->
+    <meta name="twitter:image" content="https://placehold.co/1200x630/1B98E0/ebebeb?text=Recipe+Book+Meals">
+
+</head>
+<body>
+    <header class="header">
+        <div class="container header-content">
+            <img src="images/images/recipe-book.png" alt="Recipe Book Logo" class="logo">
+            <h1>Recipe Book</h1>
+        </div>
+    </header>
+
+    <main class="main-content container">
+        <section class="search-section">
+            <form class="search-form">
+                <label for="search-input" class="sr-only">Find a Recipe</label>
+                <input type="text" id="search-input" placeholder="Find a recipe..." aria-label="Search for recipes">
+                <button type="submit" class="search-button" aria-label="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-search">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                    </svg>
+                </button>
+            </form>
+        </section>
+
+        <section class="recipes-section" id="recipes-list">
+            <!-- Recipe cards will be dynamically generated here by recipes.js -->
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container footer-content">
+            <p>&copy; 2023 Recipe Book</p>
+            <div class="social">
+                <!-- Social media icons provided under CC from https://www.iconfinder.com/AlfredoCreates  -->
+                <a href="#" aria-label="Instagram"><img src="images/images/instagram_icon.svg" alt="instagram icon"></a>
+                <a href="#" aria-label="YouTube"><img src="images/images/youtube_icon.svg" alt="youtube icon"></a>
+                <a href="#" aria-label="Pinterest"><img src="images/images/pinterest_icon.svg" alt="pinterest icon"></a>
+            </div>
+            <p class="attribution">
+                <a href="https://www.flaticon.com/free-icons/recipe" title="recipe icons" style="font-size: 0.8em;">Recipe icons created by Freepik - Flaticon</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="recipes.js"></script>
+</body>
+</html>
