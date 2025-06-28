@@ -70,68 +70,100 @@ const recipes = [
 ];
 
 /**
- * Function to generate star rating HTML.
- * @param {number} rating - The numerical rating (e.g., 4 for 4 stars).
- * @returns {string} HTML string for stars.
+ * Generate a random integer >= 0 and < num
+ * @param {number} num
+ * @returns {number}
  */
-function generateStarRating(rating) {
-    let starsHtml = '';
-    const fullStars = Math.floor(rating);
-    const emptyStars = 5 - fullStars;
-
-    for (let i = 0; i < fullStars; i++) {
-        starsHtml += '<span aria-hidden="true" class="icon-star">⭐</span>';
-    }
-    for (let i = 0; i < emptyStars; i++) {
-        starsHtml += '<span aria-hidden="true" class="icon-star-empty">☆</span>';
-    }
-    return starsHtml;
+function random(num) {
+    return Math.floor(Math.random() * num);
 }
 
 /**
- * Function to display recipes on the page.
- * @param {Array} recipesToDisplay - An array of recipe objects to render.
+ * Get a random entry from a list/array
+ * @param {Array} list
+ * @returns {*}
  */
-function displayRecipes(recipesToDisplay) {
+function getRandomListEntry(list) {
+    const listLength = list.length;
+    const randomNum = random(listLength);
+    return list[randomNum];
+}
+
+/**
+ * Generate HTML for tags list
+ * @param {Array} tags
+ * @returns {string}
+ */
+function tagsTemplate(tags) {
+    if (!tags || tags.length === 0) return '';
+    return `<ul class="recipe__tags">
+        ${tags.map(tag => `<li>${tag}</li>`).join('')}
+    </ul>`;
+}
+
+/**
+ * Generate HTML for star rating
+ * @param {number} rating
+ * @returns {string}
+ */
+function ratingTemplate(rating) {
+    let html = `<span class="rating" role="img" aria-label="Rating: ${rating} out of 5 stars">`;
+    for (let i = 1; i <= 5; i++) {
+        if (i <= rating) {
+            html += `<span aria-hidden="true" class="icon-star">⭐</span>`;
+        } else {
+            html += `<span aria-hidden="true" class="icon-star-empty">☆</span>`;
+        }
+    }
+    html += `</span>`;
+    return html;
+}
+
+/**
+ * Generate HTML for a single recipe card (classic template)
+ * @param {Object} recipe
+ * @returns {string}
+ */
+function recipeTemplate(recipe) {
+    return `<figure class="recipe">
+        <img src="${recipe.image}" alt="image of ${recipe.name}" />
+        <figcaption>
+            ${tagsTemplate(recipe.tags)}
+            <h2><a href="#">${recipe.name}</a></h2>
+            <p class="recipe__ratings">
+                ${ratingTemplate(recipe.rating)}
+            </p>
+            <p class="recipe__description">
+                ${recipe.description}
+            </p>
+        </figcaption>
+    </figure>`;
+}
+
+/**
+ * Render a list of recipes using the recipeTemplate
+ * @param {Array} recipeList
+ */
+function renderRecipes(recipeList) {
     const recipesListContainer = document.getElementById('recipes-list');
     if (!recipesListContainer) {
         console.error("Recipes list container not found!");
         return;
     }
-    recipesListContainer.innerHTML = ''; // Clear existing recipes
-
-    if (recipesToDisplay.length === 0) {
-        recipesListContainer.innerHTML = '<p class="no-results">No recipes found matching your criteria. Try a different search!</p>';
-        return;
-    }
-
-    recipesToDisplay.forEach(recipe => {
-        const recipeCard = document.createElement('article');
-        recipeCard.classList.add('recipe-card');
-
-        // Ensure tags array is not empty before accessing tags[0]
-        const tagToDisplay = recipe.tags && recipe.tags.length > 0 ? recipe.tags[0] : 'general';
-
-        recipeCard.innerHTML = `
-            <div class="recipe-image-container">
-                <img src="${recipe.image}" alt="${recipe.name}" class="recipe-image">
-                <span class="recipe-tag">${tagToDisplay}</span>
-            </div>
-            <div class="recipe-info">
-                <h2 class="recipe-title">${recipe.name}</h2>
-                <span class="rating" role="img" aria-label="Rating: ${recipe.rating} out of 5 stars">
-                    ${generateStarRating(recipe.rating)}
-                </span>
-                <p class="recipe-description">${recipe.description}</p>
-            </div>
-        `;
-        recipesListContainer.appendChild(recipeCard);
-    });
+    recipesListContainer.innerHTML = recipeList.map(recipeTemplate).join('');
 }
 
-// Initial display of recipes when the page loads
+/**
+ * Initialize the page by rendering a random recipe
+ */
+function init() {
+    const recipe = getRandomListEntry(recipes);
+    renderRecipes([recipe]);
+}
+
+// --- Run init on page load ---
 document.addEventListener('DOMContentLoaded', () => {
-    displayRecipes(recipes); // Display all recipes from the placeholder array
+    init();
     
     const searchForm = document.querySelector('.search-form');
     const searchInput = document.getElementById('search-input');
@@ -146,7 +178,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 recipe.name.toLowerCase().includes(searchTerm) || 
                 (recipe.tags && recipe.tags.some(tag => tag.toLowerCase().includes(searchTerm)))
             );
-            displayRecipes(filteredRecipes); // Display filtered recipes
+            // Use renderRecipes for filtered results
+            renderRecipes(filteredRecipes);
         });
     } else {
         console.error("Search form or input not found!");
