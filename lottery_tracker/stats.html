@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Drawing Statistics - Idaho Mega Millions</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <h1>Idaho Mega Millions Tracker</h1>
+            <nav>
+                <a href="index.html">Home</a>
+                <a href="stats.html" class="active">Statistics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="card">
+            <h2>Drawing Statistics</h2>
+            <p>These are the most frequently drawn numbers from the last two months of official Idaho Mega Millions drawings.</p>
+            
+            <h3>Most Frequent White Balls</h3>
+            <div id="white-ball-stats" class="stats-container">
+                <!-- White ball stats will be loaded here by JavaScript -->
+            </div>
+            <button id="show-more-white" class="btn-link">Show More</button>
+
+            <h3>Most Frequent Mega Balls</h3>
+            <div id="mega-ball-stats" class="stats-container">
+                <!-- Mega ball stats will be loaded here by JavaScript -->
+            </div>
+            <button id="show-more-mega" class="btn-link">Show More</button>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Your Name - CS 2450 Project</p>
+        </div>
+    </footer>
+
+    <!-- This script is specific to the statistics page -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,266 @@
+/* Basic Reset and Font Setup */
+:root {
+    --primary-color: #087E8B;   /* Teal */
+    --secondary-color: #FF5A5F; /* Coral/Red */
+    --accent-color: #C1839F;    /* Dusty Pink */
+    --background-color: #F5F5F5; /* Off-white */
+    --card-background: #ffffff;
+    --text-color: #3C3C3C;      /* Dark Gray */
+    --light-text: #ffffff;
+    --border-radius: 8px;
+    --mega-ball-yellow: #FFC72C; /* Yellow for Mega Ball */
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header and Footer */
+.site-header {
+    background-color: var(--primary-color);
+    color: var(--light-text);
+    padding: 1rem 0;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.site-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.site-header nav a {
+    color: var(--light-text);
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.site-header nav a:hover, .site-header nav a.active {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+.site-footer {
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #666;
+}
+
+/* Main Content and Cards */
+main {
+    padding-top: 2rem;
+}
+
+.card, .card-image {
+    background-color: var(--card-background);
+    border-radius: var(--border-radius);
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+    border: 1px solid #e0e0e0;
+}
+
+.card-image {
+    padding: 0;
+    overflow: hidden;
+    border: none;
+}
+
+h2, h3 {
+    color: var(--primary-color);
+    margin-top: 0;
+}
+
+h3 {
+    margin-top: 1.5rem;
+    border-bottom: 2px solid #e9ecef;
+    padding-bottom: 0.5rem;
+}
+
+/* --- NEW STYLES FOR LATEST NUMBERS --- */
+.latest-numbers-card {
+    text-align: center;
+}
+
+.latest-numbers-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap; /* Allows numbers to wrap on small screens */
+    margin-top: 1rem;
+}
+
+.winning-number {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%; /* Makes the div a circle */
+    background-color: #e9ecef;
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.4rem;
+    font-weight: bold;
+    position: relative;
+}
+
+.winning-number.mega-ball {
+    background-color: var(--mega-ball-yellow);
+    border: 2px solid #e6b327;
+}
+
+.number-separator {
+    font-size: 1.5rem;
+    color: #ccc;
+}
+/* --- END OF NEW STYLES --- */
+
+
+/* Forms and Buttons */
+.ticket-inputs {
+    margin-bottom: 1.5rem;
+}
+
+.ticket-inputs label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.number-group {
+    display: flex;
+    gap: 10px;
+}
+
+.number-group input {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 1.2rem;
+    border: 1px solid #ccc;
+    border-radius: var(--border-radius);
+}
+
+.number-group input.mega-ball-input {
+    border-color: var(--secondary-color);
+    background-color: #fff2f2;
+}
+
+.btn {
+    background-color: var(--secondary-color);
+    color: var(--light-text);
+    border: none;
+    padding: 12px 25px;
+    font-size: 1rem;
+    font-weight: bold;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.btn:hover {
+    background-color: #e0484d;
+    transform: translateY(-2px);
+}
+
+/* Result and Stats Display */
+.result-box {
+    margin-top: 1.5rem;
+    padding: 1rem;
+    border-radius: var(--border-radius);
+    background-color: #f8f9fa;
+    min-height: 50px;
+    font-weight: bold;
+}
+
+.stats-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.stat-item {
+    background-color: #e9ecef;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    font-size: 1rem;
+    width: calc(50% - 8px); /* Two columns */
+    box-sizing: border-box;
+}
+
+.stat-item .count {
+    font-weight: normal;
+    color: #555;
+    font-size: 0.9rem;
+    margin-left: 8px;
+}
+
+.stat-item .last-drawn {
+    display: block;
+    font-size: 0.8rem;
+    color: #666;
+    margin-top: 4px;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    font-weight: bold;
+    cursor: pointer;
+    padding: 5px 0;
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    text-align: left;
+}
+
+.btn-link:hover {
+    text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    .site-header .container {
+        flex-direction: column;
+        gap: 10px;
+    }
+    
+    .number-group {
+        flex-wrap: wrap;
+    }
+
+    .number-group input {
+        width: 45px;
+        height: 45px;
+    }
+
+    .stat-item {
+        width: 100%; /* Single column on mobile */
+    }
+
+    .winning-number {
+        width: 40px;
+        height: 40px;
+        font-size: 1.1rem;
+    }
+}

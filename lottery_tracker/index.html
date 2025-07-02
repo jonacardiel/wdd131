@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Idaho Mega Millions Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="site-header">
+        <div class="container">
+            <h1>Idaho Mega Millions Tracker</h1>
+            <nav>
+                <a href="index.html" class="active">Home</a>
+                <a href="stats.html">Statistics</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container">
+
+        <!-- NEW SECTION FOR LATEST WINNING NUMBERS -->
+        <section class="card latest-numbers-card">
+            <h2>Latest Winning Numbers</h2>
+            <div id="latest-numbers-display" class="latest-numbers-display">
+                <!-- The latest numbers will be dynamically inserted here by JavaScript -->
+            </div>
+        </section>
+
+        <section class="card">
+            <h2>Check Your Ticket</h2>
+            <p>Enter your numbers below to check against the latest drawing.</p>
+            <form id="ticket-checker-form">
+                <div class="ticket-inputs">
+                    <label>White Balls</label>
+                    <div class="number-group">
+                        <input type="number" min="1" max="70" required aria-label="White ball 1">
+                        <input type="number" min="1" max="70" required aria-label="White ball 2">
+                        <input type="number" min="1" max="70" required aria-label="White ball 3">
+                        <input type="number" min="1" max="70" required aria-label="White ball 4">
+                        <input type="number" min="1" max="70" required aria-label="White ball 5">
+                    </div>
+                </div>
+                <div class="ticket-inputs">
+                    <label>Mega Ball</label>
+                    <div class="number-group">
+                        <input type="number" class="mega-ball-input" min="1" max="25" required aria-label="Mega Ball">
+                    </div>
+                </div>
+                <button type="submit" class="btn">Check My Numbers</button>
+            </form>
+            <div id="checker-result" class="result-box" aria-live="polite"></div>
+        </section>
+
+        <section class="card">
+            <h2>Lucky Number Generator</h2>
+            <p>Generate a new ticket using the most frequently drawn numbers from the last two months.</p>
+            <button id="generate-btn" class="btn">Generate My Lucky Ticket</button>
+            <div id="generator-result" class="result-box" aria-live="polite">
+                <!-- Generated numbers will appear here -->
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>&copy; 2025 Your Name - CS 2450 Project</p>
+        </div>
+    </footer>
+
+    <!-- This script is specific to the home page -->
+    <script type="module" src="app.js"></script>
+</body>
+</html>
