@@ -1,4 +1,4 @@
-// This is your local database of Mega Millions drawings.
+// This is the local database of Mega Millions drawings.
 // The most recent drawing should always be at the top of the list.
 const pastDrawings = [
     { date: '2025-06-27', numbers: [18, 21, 29, 42, 50], megaBall: 2 },
@@ -54,5 +54,5 @@ const pastDrawings = [
     { date: '2025-01-03', numbers: [20, 42, 46, 59, 69], megaBall: 19 },
 ];
 
-// We use a named export so other files can import it.
+// a named export so other files can import it.
 export { pastDrawings };

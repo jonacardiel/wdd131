@@ -1,4 +1,4 @@
-// Import the winning numbers from our data file.
+// Import the winning numbers from the data file.
 
 import { pastDrawings } from './lottery-data.js';
 
@@ -48,7 +48,7 @@ if (document.getElementById('ticket-checker-form')) {
     const checkerResultEl = document.getElementById('checker-result');
     const generateBtn = document.getElementById('generate-btn');
     const generatorResultEl = document.getElementById('generator-result');
-    const latestNumbersDisplayEl = document.getElementById('latest-numbers-display'); // New element
+    const latestNumbersDisplayEl = document.getElementById('latest-numbers-display');
 
     // Displays the latest winning numbers
     function displayLatestNumbers() {
@@ -75,7 +75,7 @@ if (document.getElementById('ticket-checker-form')) {
         const megaSeparator = document.createElement('span');
         megaSeparator.className = 'number-separator';
         megaSeparator.textContent = '|';
-        megaSeparator.style.margin = "0 10px"; // Add extra space
+        megaSeparator.style.margin = "0 10px";
         latestNumbersDisplayEl.appendChild(megaSeparator);
 
         // Create and add the Mega Ball circle
